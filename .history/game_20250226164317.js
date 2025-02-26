@@ -190,10 +190,7 @@ function drawGameOver() {
   ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2);
   ctx.font = "16px Arial";
   ctx.fillText("Final Score: " + score, canvas.width / 2, canvas.height / 2 + 30);
-  // Add instruction to press R to restart
-  ctx.fillStyle = "#FF9900"; // Orange color to make it stand out
-  ctx.fillText("GAME OVER, click R to restart!", canvas.width / 2, canvas.height / 2 + 85);
-  ctx.fillStyle = "#FFFFFF"; // Reset to white for other elements
+  ctx.fillText("GAME OVER, click R to restart!", canvas.width / 2, canvas.height / 2 + 55);
   
   // Draw restart button
   const buttonWidth = 120;
@@ -419,26 +416,6 @@ function draw() {
   // Continue game loop
   if (!gameOver && !gamePaused) {
     requestAnimationFrame(draw);
-  } else if (gameOver) {
-    // Make sure game over message is displayed
-    ctx.font = "24px Arial";
-    ctx.fillStyle = "#FF0000"; // Red color for emphasis
-    ctx.textAlign = "center";
-    ctx.fillText("GAME OVER, click R to restart!", canvas.width / 2, canvas.height - 50);
-    
-    // Add event listener for R key if not already added
-    if (!window.gameOverKeyListenerAdded) {
-      window.gameOverKeyListenerAdded = true;
-      document.addEventListener("keydown", function(e) {
-        if ((e.key === "r" || e.key === "R") && gameOver) {
-          resetGame({
-            clientX: canvas.offsetLeft + canvas.width / 2,
-            clientY: canvas.offsetTop + canvas.height / 2 + 70
-          });
-          window.gameOverKeyListenerAdded = false;
-        }
-      }, { once: true });
-    }
   }
 }
 
