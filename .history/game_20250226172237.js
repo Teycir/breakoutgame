@@ -256,9 +256,6 @@ function collisionDetection() {
           score += brick.points;
           scoreElement.textContent = score;
           
-          // Play winning sound when score increases
-          winningSound.play();
-          
           // Check if all bricks are destroyed
           if (checkLevelComplete()) {
             createBricks();
