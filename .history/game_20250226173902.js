@@ -457,7 +457,7 @@ function draw() {
     ctx.font = "24px Arial";
     ctx.fillStyle = "#FF0000"; // Red color for emphasis
     ctx.textAlign = "center";
-    ctx.fillText("GAME OVER! Press R to restart.", canvas.width / 2, canvas.height - 50);
+    ctx.fillText("GAME OVER, press R to restart!", canvas.width / 2, canvas.height - 50);
     
     // Add event listener for R key if not already added
     if (!window.gameOverKeyListenerAdded) {

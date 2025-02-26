@@ -37,11 +37,6 @@ let ballX = canvas.width / 2;
 let ballY = canvas.height - 30;
 let ballDX = 2.88; // Increased by 20%
 let ballDY = -2.88; // Increased by 20%
-// Store initial ball speed for reset
-const initialBallDX = 2.88;
-const initialBallDY = -2.88;
-// Flag to track if speed has been increased by wall collision
-let speedIncreasedByWall = false;
 
 // Brick properties
 const brickRowCount = 5;
@@ -261,13 +256,6 @@ function collisionDetection() {
           score += brick.points;
           scoreElement.textContent = score;
           
-          // Reset ball speed to initial value if it was increased by wall collision
-          if (speedIncreasedByWall) {
-            ballDX = ballDX > 0 ? initialBallDX : -initialBallDX;
-            ballDY = ballDY > 0 ? -initialBallDY : initialBallDY;
-            speedIncreasedByWall = false;
-          }
-          
           // Play winning sound when score increases
           winningSound.play();
           
@@ -340,9 +328,8 @@ function resetGame(e) {
   paddleX = (canvas.width - paddleWidth) / 2;
   ballX = canvas.width / 2;
   ballY = canvas.height - 30;
-  ballDX = initialBallDX;
-  ballDY = initialBallDY;
-  speedIncreasedByWall = false;
+  ballDX = 2.88; // Increased by 20%
+  ballDY = -2.88; // Increased by 20%
   
   // Recreate bricks
   createBricks();
@@ -393,13 +380,6 @@ function draw() {
   // Ball wall collision
   if (ballX + ballDX > canvas.width - ballRadius || ballX + ballDX < ballRadius) {
     ballDX = -ballDX;
-    
-    // Increase speed by 50% if not already increased
-    if (!speedIncreasedByWall) {
-      ballDX = ballDX > 0 ? ballDX * 1.5 : ballDX * 1.5;
-      ballDY = ballDY > 0 ? ballDY * 1.5 : ballDY * 1.5;
-      speedIncreasedByWall = true;
-    }
   }
   
   // Ball top collision
@@ -430,9 +410,8 @@ function draw() {
         // Reset ball and paddle position
         ballX = canvas.width / 2;
         ballY = canvas.height - 30;
-        ballDX = initialBallDX;
-        ballDY = initialBallDY;
-        speedIncreasedByWall = false;
+        ballDX = 2.4; // Increased by 20%
+        ballDY = -2.4; // Increased by 20%
         paddleX = (canvas.width - paddleWidth) / 2;
       }
     }
@@ -440,9 +419,9 @@ function draw() {
   
   // Paddle movement
   if (rightPressed && paddleX < canvas.width - paddleWidth) {
-    paddleX += 8; // Increased by ~20%
+    paddleX += 7;
   } else if (leftPressed && paddleX > 0) {
-    paddleX -= 8; // Increased by ~20%
+    paddleX -= 7;
   }
   
   // Move ball
@@ -457,7 +436,7 @@ function draw() {
     ctx.font = "24px Arial";
     ctx.fillStyle = "#FF0000"; // Red color for emphasis
     ctx.textAlign = "center";
-    ctx.fillText("GAME OVER! Press R to restart.", canvas.width / 2, canvas.height - 50);
+    ctx.fillText("GAME OVER, click R to restart!", canvas.width / 2, canvas.height - 50);
     
     // Add event listener for R key if not already added
     if (!window.gameOverKeyListenerAdded) {
