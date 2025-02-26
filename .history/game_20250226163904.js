@@ -90,13 +90,6 @@ function keyDownHandler(e) {
     togglePause();
   } else if (e.key === " " && !gameStarted) {
     startGame();
-  } else if ((e.key === "r" || e.key === "R") && gameOver) {
-    // Create a mock event object with client coordinates in the middle of the button
-    const mockEvent = {
-      clientX: canvas.offsetLeft + canvas.width / 2,
-      clientY: canvas.offsetTop + canvas.height / 2 + 70 // Approximate button center
-    };
-    resetGame(mockEvent);
   }
 }
 
@@ -180,7 +173,7 @@ function drawStartScreen() {
   ctx.fillText("Click to Start", canvas.width / 2, canvas.height / 2);
   ctx.font = "16px Arial";
   ctx.fillText("Use arrow keys or mouse to move the paddle", canvas.width / 2, canvas.height / 2 + 30);
-  ctx.fillText("Press 'P' to pause, 'R' to restart", canvas.width / 2, canvas.height / 2 + 55);
+  ctx.fillText("Press 'P' to pause", canvas.width / 2, canvas.height / 2 + 55);
 }
 
 function drawGameOver() {

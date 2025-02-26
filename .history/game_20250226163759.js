@@ -90,13 +90,6 @@ function keyDownHandler(e) {
     togglePause();
   } else if (e.key === " " && !gameStarted) {
     startGame();
-  } else if ((e.key === "r" || e.key === "R") && gameOver) {
-    // Create a mock event object with client coordinates in the middle of the button
-    const mockEvent = {
-      clientX: canvas.offsetLeft + canvas.width / 2,
-      clientY: canvas.offsetTop + canvas.height / 2 + 70 // Approximate button center
-    };
-    resetGame(mockEvent);
   }
 }
 
@@ -180,7 +173,7 @@ function drawStartScreen() {
   ctx.fillText("Click to Start", canvas.width / 2, canvas.height / 2);
   ctx.font = "16px Arial";
   ctx.fillText("Use arrow keys or mouse to move the paddle", canvas.width / 2, canvas.height / 2 + 30);
-  ctx.fillText("Press 'P' to pause, 'R' to restart", canvas.width / 2, canvas.height / 2 + 55);
+  ctx.fillText("Press 'P' to pause", canvas.width / 2, canvas.height / 2 + 55);
 }
 
 function drawGameOver() {
@@ -279,23 +272,7 @@ function checkLevelComplete() {
 }
 
 // Reset game
-function resetGame(e) {
-  // Only reset if game is over
-  if (!gameOver) return;
-  
-  // Check if click is within restart button (if it exists)
-  if (window.restartButton) {
-    const relativeX = e.clientX - canvas.offsetLeft;
-    const relativeY = e.clientY - canvas.offsetTop;
-    const button = window.restartButton;
-    
-    // If click is outside the button, do nothing
-    if (relativeX < button.x || relativeX > button.x + button.width ||
-        relativeY < button.y || relativeY > button.y + button.height) {
-      return;
-    }
-  }
-  
+function resetGame() {
   // Remove the reset event listener to prevent duplicates
   canvas.removeEventListener("click", resetGame);
   
@@ -322,9 +299,6 @@ function resetGame(e) {
   
   // Add start game listener
   canvas.addEventListener("click", startGame, false);
-  
-  // Clear restart button reference
-  window.restartButton = null;
   
   // Redraw the game
   draw();
