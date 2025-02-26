@@ -318,8 +318,8 @@ function resetGame(e) {
   paddleX = (canvas.width - paddleWidth) / 2;
   ballX = canvas.width / 2;
   ballY = canvas.height - 30;
-  ballDX = 2.4; // Increased by 20%
-  ballDY = -2.4; // Increased by 20%
+  ballDX = 2;
+  ballDY = -2;
   
   // Recreate bricks
   createBricks();
@@ -398,8 +398,8 @@ function draw() {
         // Reset ball and paddle position
         ballX = canvas.width / 2;
         ballY = canvas.height - 30;
-        ballDX = 2.4; // Increased by 20%
-        ballDY = -2.4; // Increased by 20%
+        ballDX = 2;
+        ballDY = -2;
         paddleX = (canvas.width - paddleWidth) / 2;
       }
     }
