@@ -136,8 +136,6 @@ function togglePause() {
 function startGame() {
   if (!gameStarted) {
     gameStarted = true;
-    // Play the start sound
-    startSound.play();
     canvas.removeEventListener("click", startGame);
     draw();
   }
@@ -400,8 +398,6 @@ function draw() {
       
       if (lives === 0) {
         gameOver = true;
-        // Play the game over sound
-        gameOverSound.play();
       } else {
         // Reset ball and paddle position
         ballX = canvas.width / 2;
