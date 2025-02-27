@@ -72,3 +72,6 @@ To modify the game, you can edit the following files:
 ## License
 
 This project is open source and available for personal and educational use.
+
+## Video for demo and installation
+https://youtu.be/vPx_70RirdQ
